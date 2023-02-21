@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) dmenu-bluetooth ;;
+	2) setsid -f "$TERMINAL" -e bluetoothctl ;;
+	3) notify-send "🖥 bluetooth module " "\- Shows bluetooth status.
+- Click to show dmenu.
+- Middle click to open bluetoothctl." ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+pidof bluetoothd >/dev/null && dmenu-bluetooth --status

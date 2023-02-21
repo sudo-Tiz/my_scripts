@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send "🖥 GPU hogs" "  $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader)" ;;
+	2) setsid -f "$TERMINAL" -e watch nvidia-smi ;;
+	3) notify-send "🖥 GPU module " "\- Shows GPU temperature.
+- Click to show intensive processes.
+- Middle click to open nvidia-smi." ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+sudo /usr/bin/isw -r 1 | grep RPM | awk '{print  "🌡GPU " $8 "  "$10}'
+
+#nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | awk '{print "🌡+" $1 "°C"}'
